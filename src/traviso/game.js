@@ -27,7 +27,9 @@ function getHouseOnLocation(engine, position) {
 }
 
 
-export function initWhateverse(canvas) {
+export function initWhateverse({
+    onHouseVisit,
+}) {
 
     const pixiRoot = new PIXI.Application({
         width: window.innerWidth,
@@ -53,13 +55,14 @@ export function initWhateverse(canvas) {
 
     // callback function that will be called when a tile with an interactive map-object on it is selected, default null
     function objectSelectCallback(obj) {
+        console.log('selected: ', obj)
         engine.moveCurrentControllableToLocation(obj.mapPos);
     }
 
     // callback function that will be called when any moving object reaches its destination, default null
     function objectReachedDestinationCallback(tile) {
         const house = getHouseOnLocation(engine, tile.mapPos);
-        console.log('welcome to ', house.name);
+        onHouseVisit(house);
 
     }
 
