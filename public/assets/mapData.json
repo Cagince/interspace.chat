@@ -54,7 +54,7 @@
             }
         },
         "2": {
-            "movable": false,
+            "movable": true,
             "interactive": true,
             "rowSpan": 1,
             "columnSpan": 1,
@@ -67,8 +67,8 @@
             }
         },
         "3": {
-            "movable": false,
-            "interactive": false,
+            "movable": true,
+            "interactive": true,
             "rowSpan": 1,
             "columnSpan": 1,
             "visuals": {
@@ -80,8 +80,8 @@
             }
         },
         "4": {
-            "movable": false,
-            "interactive": false,
+            "movable": true,
+            "interactive": true,
             "rowSpan": 1,
             "columnSpan": 1,
             "visuals": {
@@ -93,7 +93,7 @@
             }
         },
        "5": {
-            "movable": false,
+            "movable": true,
             "interactive": true,
             "rowSpan": 1,
             "columnSpan": 1,
@@ -106,8 +106,8 @@
             }
         },
         "6": {
-            "movable": false,
-            "interactive": false,
+            "movable": true,
+            "interactive": true,
             "rowSpan": 1,
             "columnSpan": 1,
             "visuals": {
@@ -119,8 +119,8 @@
             }
         },
         "7": {
-            "movable": false,
-            "interactive": false,
+            "movable": true,
+            "interactive": true,
             "rowSpan": 1,
             "columnSpan": 1,
             "visuals": {
@@ -132,7 +132,7 @@
             }
         }
     },
-    "initialControllableLocation": { "columnIndex": 0, "rowIndex": 8, "controllableId": "1" },
+    "initialControllableLocation": { "columnIndex": 7, "rowIndex": 8, "controllableId": "1" },
     "groundMap": [
         { "row": "1 ,1 ,1, 1, 1 ,1 ,1 ,1, 1 ,1 ,1, 1, 1 ,1 ,1 ,1" },
         { "row": "1 ,1 ,1, 1, 1 ,1 ,1 ,1, 1 ,1 ,1, 1, 1 ,1 ,1 ,1" },
@@ -162,7 +162,7 @@
         { "row": "0 ,0 ,4, 0, 0 ,0 ,0 ,3, 0 ,0 ,0, 0, 2, 0, 0, 0" },
         { "row": "0 ,0 ,0, 0, 0 ,0 ,0 ,0, 0 ,0 ,0, 0, 0, 0, 0, 0" },
         { "row": "0 ,0 ,0, 0, 0 ,0 ,0 ,0, 0 ,0 ,0, 0, 0, 0, 0, 0" },
-        { "row": "1 ,0 ,0 ,0, 0 ,0 ,0 ,0, 0 ,0 ,0, 0, 0, 0, 0, 0" },
+        { "row": "0 ,0 ,0 ,0, 0 ,0 ,0 ,1, 0 ,0 ,0, 0, 0, 0, 0, 0" },
         { "row": "0 ,0 ,0, 0, 0 ,0 ,0 ,0, 0 ,0 ,0, 0, 0, 0, 0, 0" },
         { "row": "0 ,0 ,0, 0, 0 ,0 ,0 ,0, 0 ,0 ,0, 0, 0, 0, 0, 0" },
         { "row": "0 ,0 ,0, 0, 0 ,0 ,0 ,0, 0 ,0 ,0, 0, 0, 0, 0, 0" },
