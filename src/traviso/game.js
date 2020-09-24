@@ -1,5 +1,3 @@
-import { RoomURLs } from '../utils/constants';
-
 export const PIXI = global.PIXI;
 export const TRAVISO = global.TRAVISO;
 
@@ -20,8 +18,7 @@ function getHouseOnLocation(engine, position) {
     if (!houseObj) return {};
 
     const houseName = MapObjectTypeBuildingMap[houseObj.type];
-
-    return { name: houseName, data: RoomURLs[houseName]};
+    return houseName;
 }
 
 export function initWhateverse({ onHouseVisit }, parent) {

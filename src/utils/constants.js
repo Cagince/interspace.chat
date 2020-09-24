@@ -55,4 +55,4 @@ export const RoomNames = Object.keys(RoomURLs);
 export const MetaGameURLS = {
 	Psd: 'https://www.dropbox.com/s/cocwaannzy8lqty/Interspace%20v0.2.psd?dl=0',
 	Discord: 'https://discord.gg/cZjqQmE',
-}
+};

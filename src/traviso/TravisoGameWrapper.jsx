@@ -21,7 +21,7 @@ function TravisoGameWrapper({ }) {
     const { addFloatingSpace } = useContext(FloatingSpaceContext);
     const ref = useRef(null);
 
-    const onHouseVisit = house => addFloatingSpace(house.name);
+    const onHouseVisit = house => addFloatingSpace(house);
 
 
     useEffect(_ => ref && initWhateverse({ onHouseVisit }, ref), [ref]);
@@ -29,9 +29,9 @@ function TravisoGameWrapper({ }) {
     return (
         <div ref={ref}>
             <StyledFooterMessage>
-				Feel free to make improvements to the map, download the .psd file
-				&nbsp;<a href={MetaGameURLS.Psd}>here</a>&nbsp;
-				and share with us <a href={MetaGameURLS.Discord}>there</a>
+                Feel free to make improvements to the map, download the .psd file
+                &nbsp;<a href={MetaGameURLS.Psd}>here</a>&nbsp;
+                and share with us <a href={MetaGameURLS.Discord}>there</a>
             </StyledFooterMessage>
         </div>
         

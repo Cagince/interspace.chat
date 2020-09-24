@@ -75,7 +75,7 @@ function getFloatingRoomWindow(windowKey) {
 	} else if (RoomNames.indexOf(windowKey) > -1) {
 		return <RoomInstance space={windowKey} />;
 	} else if (windowKey === 'rTrees') {
-		return <RTreesInstance />;
+		return <RTreesInstance backgroundColor={'white'} />;
 	} else if (windowKey === null) {
 		return null;
 	}
