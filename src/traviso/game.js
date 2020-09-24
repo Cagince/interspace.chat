@@ -3,7 +3,6 @@ import { RoomURLs } from '../utils/constants';
 export const PIXI = global.PIXI;
 export const TRAVISO = global.TRAVISO;
 
-
 const HOUSE_TYPES = [2, 3, 4, 5, 6];
 
 const MapObjectTypeBuildingMap = {
@@ -13,7 +12,6 @@ const MapObjectTypeBuildingMap = {
     '5': 'Stress Test Arena',
     '6': 'Raid Guild',
 };
-
 
 function getHouseOnLocation(engine, position) {
     const objectsOnDestination = engine.getObjectsAtLocation(position);
@@ -26,10 +24,7 @@ function getHouseOnLocation(engine, position) {
     return { name: houseName, data: RoomURLs[houseName]};
 }
 
-
-export function initWhateverse({
-    onHouseVisit,
-}) {
+export function initWhateverse({ onHouseVisit }, parent) {
 
     const pixiRoot = new PIXI.Application({
         width: window.innerWidth,
@@ -39,13 +34,11 @@ export function initWhateverse({
         autoDensity: true,
     });
 
-
-
-
-
     // callback function that will be called once everything is loaded and engine instance is ready, default null
-    function engineInstanceReadyCallback() {
-        document.body.appendChild(pixiRoot.view);
+    function engineInstanceReadyCallback(obj) {
+        obj.moveEngine.DEFAULT_SPEED = 5;
+        parent.current.appendChild(pixiRoot.view);
+
     }
 
     // callback function that will be called when a tile is selected, default null
@@ -55,7 +48,6 @@ export function initWhateverse({
 
     // callback function that will be called when a tile with an interactive map-object on it is selected, default null
     function objectSelectCallback(obj) {
-        console.log('selected: ', obj)
         engine.moveCurrentControllableToLocation(obj.mapPos);
     }
 
@@ -63,13 +55,11 @@ export function initWhateverse({
     function objectReachedDestinationCallback(tile) {
         const house = getHouseOnLocation(engine, tile.mapPos);
         onHouseVisit(house);
-
     }
 
     // callback function that will be called when any moving object is in move and there are other objects on the next tile, default null
     function otherObjectsOnTheNextTileCallback(...args) {
         console.log('obj on next tile', args)
-
     }
 
     // callback function that will be called everytime an objects direction or position changed, default null
@@ -79,7 +69,6 @@ export function initWhateverse({
          */
     }
 
-    
     /**
      * engine-instance configuration object 
      * @see: http://www.travisojs.com/blog/tutorial/2015/03/15/engine-configuration.html 

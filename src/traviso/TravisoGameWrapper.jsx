@@ -1,44 +1,52 @@
-import  React, { useRef, useEffect, useState, useReducer } from 'react';
+import  React, { useRef, useEffect, useReducer } from 'react';
+import { createFloatingRoomWindow } from '../components/FloatingRoomWindow';
 import { initWhateverse } from './game';
-
-
 
 const houseActions = {
     visit: 'visit',
     windowClose: 'windowClose',
-}
-
+};
 
 function houseReducer(state, action) {
     switch(action.type) {
         case houseActions.visit:
-            const { house } = action.payload;
-            return { ...state, [house.name]: house };
+            return { 
+                ...state, 
+                [action.payload.house.name]: true 
+            };
         case houseActions.windowClose:
-            const _state = { ...state };
-            delete  _state[action.payload.houseName];
-            return _state;
+            return { 
+                ...state, 
+                [action.payload.name]: false 
+            };
         default:
             return state;
     }
 }
 
 function TravisoGameWrapper({ }) {
-    const [activeHouses, dispatch] = useReducer(houseReducer, {});
+    const [houses, dispatch] = useReducer(houseReducer, {});
+    const ref = useRef(null);
 
-    const onHouseVisit = house => 
-        house.name && 
-        !activeHouses[house.name] && 
-        dispatch({ type: houseActions.visit, payload: { house } });
-    // const onHouseWindowClose = houseName => dispatch({ type: houseActions.windowClose, payload: { houseName } });
+    const canVisit = house => house.name && !houses[house.name];
+    const onHouseVisit = house => canVisit(house) && dispatch({ type: houseActions.visit, payload: { house } });
+    const closeHouseWindow = name =>  dispatch({ type: houseActions.windowClose, payload: { name } });
 
-    useEffect(_ => initWhateverse({ onHouseVisit }), []);
-    console.log(activeHouses);
+    useEffect(_ => ref && initWhateverse({ onHouseVisit }, ref), [ref]);
+
+    const windows = Object.keys(houses)
+        .filter(key => houses[key]);
+        // .map((key, index) => createFloatingRoomWindow(key, closeHouseWindow, index));
 
     /**
-     * @todo add modals ...etc.
+     * @todo add windows ...etc.
      */
-    return (<> </>);
+    return (
+        <div ref={ref}>
+            {windows}
+        </div>
+        
+    );
 }
 
 
