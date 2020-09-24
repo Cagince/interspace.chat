@@ -48,12 +48,16 @@ export function initWhateverse({ onHouseVisit }, parent) {
     // callback function that will be called when a tile with an interactive map-object on it is selected, default null
     function objectSelectCallback(obj) {
         engine.moveCurrentControllableToLocation(obj.mapPos);
+        const house = getHouseOnLocation(engine, obj.mapPos);
+
+        if (house) {
+            onHouseVisit(house);
+        }
     }
 
     // callback function that will be called when any moving object reaches its destination, default null
     function objectReachedDestinationCallback(tile) {
-        const house = getHouseOnLocation(engine, tile.mapPos);
-        onHouseVisit(house);
+        console.log('destination reached!');
     }
 
     // callback function that will be called when any moving object is in move and there are other objects on the next tile, default null
