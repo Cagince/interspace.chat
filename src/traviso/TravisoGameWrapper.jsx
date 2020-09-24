@@ -3,58 +3,49 @@ import { FloatingSpaceContext } from '../contexts/FloatingSpaceContext';
 // import { createFloatingRoomWindow } from '../components/FloatingRoomWindow';
 import { initWhateverse } from './game';
 
-const houseActions = {
-    visit: 'visit',
-    windowClose: 'windowClose',
-};
+import styled from 'styled-components';
 
-function houseReducer(state, action) {
-    switch(action.type) {
-        case houseActions.visit:
-            return { 
-                ...state, 
-                [action.payload.house.name]: true 
-            };
-        case houseActions.windowClose:
-            return { 
-                ...state, 
-                [action.payload.name]: false 
-            };
-        default:
-            return state;
-    }
+
+const COLORS = {
+    BLUE: '#0dc3cf',
+    PINK: '#ff247c',
 }
 
+const StyledFooterMessage = styled.div`
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    margin: auto;
 
+    font-size: 10px;
+    color: ${COLORS.BLUE};
+
+
+    > a {
+        color: ${COLORS.PINK};
+    }
+`;
 
 
 
 function TravisoGameWrapper({ }) {
-    const [houses, dispatch] = useReducer(houseReducer, {});
     const { currentFloatingSpaces, addFloatingSpace } = useContext(FloatingSpaceContext);
-
     const ref = useRef(null);
 
-    const canVisit = house => house.name && !houses[house.name];
     // const onHouseVisit = house => canVisit(house) && dispatch({ type: houseActions.visit, payload: { house } });
     const onHouseVisit = house => addFloatingSpace(house.name);
-    console.log(currentFloatingSpaces);
-    // const closeHouseWindow = name =>  dispatch({ type: houseActions.windowClose, payload: { name } });
 
     useEffect(_ => ref && initWhateverse({ onHouseVisit }, ref), [ref]);
 
-
-
-    const windows = Object.keys(houses)
-        .filter(key => houses[key]);
-        // .map((key, index) => createFloatingRoomWindow(key, closeHouseWindow, index));
-
-    /**
-     * @todo add windows ...etc.
-     */
     return (
         <div ref={ref}>
-            {windows}
+            <StyledFooterMessage>
+				Feel free to make improvements to the map, download the .psd file&nbsp;
+				<a href='https://www.dropbox.com/s/cocwaannzy8lqty/Interspace%20v0.2.psd?dl=0'>
+					here
+				</a>&nbsp;
+				and share with us <a href='https://discord.gg/cZjqQmE'>there</a>
+            </StyledFooterMessage>
         </div>
         
     );
