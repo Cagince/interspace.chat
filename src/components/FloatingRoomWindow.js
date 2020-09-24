@@ -16,9 +16,12 @@ const SpaceHeader = styled.div`
 	justify-content: space-between;
 	align-items: center;
 `;
+
 const SpaceHeaderElement = styled.div`
+	font-family: monospace;
 	margin: 0.5rem;
 `;
+
 const SpaceContainer = styled.div`
 	width: 100%;
 	height: 100%;
@@ -32,32 +35,37 @@ const SpaceContent = styled.div`
 	flex: 1;
 `;
 
-const spaceContainerStyle = {
-	padding: '15px',
-	paddingTop: '0px',
-	backgroundColor: '#3e3d3deb',
-	borderRadius: 10,
-	cursor: 'all-scroll',
-	pointerEvents: 'all',
-	boxShadow:
-		'0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)',
-	'&:active iframe': {
-		pointerEvents: 'none',
-	},
-};
+const StyledRnd = styled(Rnd)`
+	background: ${props => props.theme.color.transparent_dark};
+	border: 1px solid ${props => props.theme.color.pink};
+	font-size: ${props => props.theme.font.large};
+	backdrop-filter: opacity(20%);
+	border-radius: 3px;
+	padding: 16px 8px;
+	margin: 10px;
+	cursor: all-scroll;
+	pointerEvents: all;
 
-const Closer = styled.div`
-	opacity: 0.7;
+	&:active iframe: {
+		pointerEvents: none,
+	};
+
+`;
+
+const StyledCloser = styled.div`
 	cursor: pointer;
+	opacity: 0.7;
+
 	&:hover {
 		opacity: 1;
 	}
+
 	&::before {
-		content: '×'; // here is your X(cross) sign.
-		color: #fff;
+		content: '×';
 		font-family: Arial, sans-serif;
 		font-weight: bold;
-		font-size: 30px;
+		font-size: ${props => props.theme.small};
+		color: ${props => props.theme.color.pink};
 	}
 `;
 
@@ -67,7 +75,7 @@ function getFloatingRoomWindow(windowKey) {
 	} else if (RoomNames.indexOf(windowKey) > -1) {
 		return <RoomInstance space={windowKey} />;
 	} else if (windowKey === 'rTrees') {
-		return <RTreesInstance backgroundColor={'white'} />;
+		return <RTreesInstance />;
 	} else if (windowKey === null) {
 		return null;
 	}
@@ -80,16 +88,13 @@ function zIndexesReducer(state, action) {
 	};
 }
 
+const defaultDimensions =  { x: 20, y: 20, width, height };
+
 function FloatingRoomWindow() {
-	const { currentFloatingSpaces, closeFloatingSpace } = useContext(
-		FloatingSpaceContext
-	);
+	const { currentFloatingSpaces, closeFloatingSpace } = useContext(FloatingSpaceContext);
 
 	const [zIndexes, setZIndexes] = useReducer(zIndexesReducer, {});
-	const maxZ = Object.values(zIndexes).reduce(
-		(acc, el) => Math.max(acc, el),
-		1
-	);
+	const maxZ = Object.values(zIndexes).reduce((acc, el) => Math.max(acc, el), 1);
 
 	useEffect(() => {
 		let tempMax = maxZ;
@@ -105,33 +110,23 @@ function FloatingRoomWindow() {
 	}
 
 	return currentFloatingSpaces.map((windowKey) => (
-		<Rnd
+		<StyledRnd
 			key={windowKey}
-			default={{
-				x: 20,
-				y: 20,
-				width,
-				height,
-			}}
-			style={{
-				...spaceContainerStyle,
-				zIndex: zIndexes[windowKey] || 1,
-			}}
+			default={defaultDimensions}
+			style={{ zIndex: zIndexes[windowKey] || 1, }}
 			onDragStart={() => setWindowFocus(windowKey)}
 		>
 			<SpaceContainer>
 				<SpaceHeader>
-					<SpaceHeaderElement
-						onClick={() => closeFloatingSpace(windowKey)}
-					>
-						<Closer />
-					</SpaceHeaderElement>
-					<SpaceHeaderElement>{windowKey}</SpaceHeaderElement>
 					<SpaceHeaderElement></SpaceHeaderElement>
+					<SpaceHeaderElement>{windowKey}</SpaceHeaderElement>
+					<SpaceHeaderElement onClick={() => closeFloatingSpace(windowKey)}>
+						<StyledCloser />
+					</SpaceHeaderElement>
 				</SpaceHeader>
 				<SpaceContent>{getFloatingRoomWindow(windowKey)}</SpaceContent>
 			</SpaceContainer>
-		</Rnd>
+		</StyledRnd>
 	));
 }
 

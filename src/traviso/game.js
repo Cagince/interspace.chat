@@ -38,7 +38,6 @@ export function initWhateverse({ onHouseVisit }, parent) {
     function engineInstanceReadyCallback(obj) {
         obj.moveEngine.DEFAULT_SPEED = 5;
         parent.current.appendChild(pixiRoot.view);
-
     }
 
     // callback function that will be called when a tile is selected, default null

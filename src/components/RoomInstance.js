@@ -23,13 +23,13 @@ const SERVICES = {
   },
 };
 
-
 const Container = styled.div`
-  height: 100%;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  font-size: ${props => props.theme.font.medium};
 `;
 
 const ServiceButtonContainer = styled.div`
@@ -37,28 +37,51 @@ const ServiceButtonContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 50px;
-  background-color: black;
-  border-bottom: 1px solid white;
+  padding: 0 5px;
 `;
 
 const ServiceButton = styled.div`
-  height: 100%;
+  padding: 10px 0;
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  &:hover {
-    background-color: #616161;
+
+  &:hover > span {
+    color: ${props => props.theme.color.blue};
   }
+
+  border-bottom: 1px solid ${props => props.theme.color.blue};
+  
+  span {
+    color: ${props => props.theme.color.pink};
+    font-family: monospace;
+
+  }
+
   &.active {
-    background-color: #423838;
+    border-radius: 3px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border: 1px solid ${props => props.theme.color.blue};
+    border-bottom: none;
+
+    span {
+      color: ${props => props.theme.color.blue};
+    }
   }
 `;
 
 const ServiceContent = styled.div`
+  border-radius: 3px;
+  background: ${props => props.theme.color.transparent_dark};
+  border: 1px solid ${props => props.theme.color.blue};
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top: none;
+  margin: 0 5px;
+  padding: 1em;
   flex: 1;
 `;
 

@@ -5,9 +5,9 @@ import { MetaGameURLS } from '../utils/constants';
 import { initWhateverse } from './game';
 
 const StyledFooterMessage = styled.div`
+    font-size: ${props => props.theme.font.small};
     color: ${props => props.theme.color.blue};
     position: absolute;
-    font-size: 10px;
     bottom: 10px;
     right: 10px;
 
@@ -22,6 +22,7 @@ function TravisoGameWrapper({ }) {
     const ref = useRef(null);
 
     const onHouseVisit = house => addFloatingSpace(house.name);
+
 
     useEffect(_ => ref && initWhateverse({ onHouseVisit }, ref), [ref]);
 
