@@ -1,13 +1,17 @@
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
 import './App.css';
 import FloatingRoomWindow from './components/FloatingRoomWindow';
 import RootContextProvider from './contexts/RootContext';
 
 import TravisoGameWrapper from './traviso/TravisoGameWrapper';
+import { theme } from './utils/theme';
 
 function App() {
 	return (
 		<div className='App'>
+			<ThemeProvider theme={theme}>
+
 			{/* <div className='stars'></div>
 			<div className='twinkling'></div>
 
@@ -22,10 +26,11 @@ function App() {
 				}}
 			/> */}
 
-			<RootContextProvider>
-				<TravisoGameWrapper />
-				<FloatingRoomWindow />
-			</RootContextProvider>
+				<RootContextProvider>
+					<TravisoGameWrapper />
+					<FloatingRoomWindow />
+				</RootContextProvider>
+			</ThemeProvider>
 		</div>
 	);
 }
