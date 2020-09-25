@@ -1,7 +1,7 @@
 export const PIXI = global.PIXI;
 export const TRAVISO = global.TRAVISO;
 
-const HOUSE_TYPES = [2, 3, 4, 5, 6];
+const HOUSE_TYPES = [2, 3, 4, 5, 6, 7 ];
 
 const MapObjectTypeBuildingMap = {
     '2': 'House of Defiance',
@@ -9,6 +9,7 @@ const MapObjectTypeBuildingMap = {
     '4': 'House of Adoption',
     '5': 'Stress Test Arena',
     '6': 'Raid Guild',
+    '7': 'loft.radio',
 };
 
 function getHouseOnLocation(engine, position) {
@@ -75,7 +76,12 @@ export function initWhateverse({ onHouseVisit }, parent) {
      * */
     var instanceConfig = {
         mapDataPath: '/assets/mapData.json', 
-        assetsToLoad: ['/assets/assets_characters.json', '/assets/map/tiles/ground.png', '/assets/map/objects/block.png'],
+        assetsToLoad: [
+            '/assets/assets_characters.json',
+            '/assets/map/tiles/ground.png',
+            '/assets/map/objects/block.png',
+            '/assets/map/objects/pyramid.png'
+        ],
         initialPositionFrame: { x : 0, y : 0, w : window.innerWidth, h : window.innerHeight },
         initialZoomLevel: -0.5,
         mapDraggable: true,
@@ -89,7 +95,7 @@ export function initWhateverse({ onHouseVisit }, parent) {
         tileSelectCallback
     };
     
-    var engine = TRAVISO.getEngineInstance(instanceConfig, { logEnabled: true });
+    var engine = TRAVISO.getEngineInstance(instanceConfig, { logEnabled: false });
     pixiRoot.stage.addChild(engine);
 
 }
