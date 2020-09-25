@@ -47,17 +47,17 @@ const ServiceButton = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  color: ${props => props.theme.color.white};
 
   &:hover > span {
-    color: ${props => props.theme.color.blue};
+    text-shadow: ${props => props.theme.color.text_shadow_pink};
   }
 
   border-bottom: 1px solid ${props => props.theme.color.blue};
   
   span {
-    color: ${props => props.theme.color.pink};
     font-family: monospace;
-
+    text-shadow: ${props => props.theme.color.text_shadow_blue};
   }
 
   &.active {
@@ -68,7 +68,7 @@ const ServiceButton = styled.div`
     border-bottom: none;
 
     span {
-      color: ${props => props.theme.color.blue};
+    text-shadow: ${props => props.theme.color.text_shadow_blue};
     }
   }
 `;
@@ -80,6 +80,7 @@ const ServiceContent = styled.div`
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   border-top: none;
+
   margin: 0 5px;
   padding: 1em;
   flex: 1;

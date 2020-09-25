@@ -20,6 +20,10 @@ const SpaceHeader = styled.div`
 const SpaceHeaderElement = styled.div`
 	font-family: monospace;
 	margin: 0.5rem;
+
+	color: ${props => props.theme.color.white};
+	text-shadow: ${props => props.theme.color.text_shadow_pink};
+	font-weight: 700;
 `;
 
 const SpaceContainer = styled.div`
@@ -38,6 +42,7 @@ const SpaceContent = styled.div`
 const StyledRnd = styled(Rnd)`
 	background: ${props => props.theme.color.transparent_dark};
 	border: 1px solid ${props => props.theme.color.pink};
+	box-shadow: ${props => props.theme.color.box_shadow_pink};
 	font-size: ${props => props.theme.font.large};
 	backdrop-filter: opacity(20%);
 	border-radius: 3px;
@@ -65,7 +70,8 @@ const StyledCloser = styled.div`
 		font-family: Arial, sans-serif;
 		font-weight: bold;
 		font-size: ${props => props.theme.small};
-		color: ${props => props.theme.color.pink};
+		color: ${props => props.theme.color.white};
+		text-shadow: ${props => props.theme.color.text_shadow_white};
 	}
 `;
 
