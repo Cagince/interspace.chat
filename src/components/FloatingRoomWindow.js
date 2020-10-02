@@ -11,6 +11,8 @@ import { RoomNames } from '../utils/constants';
 const height = 600;
 const width = 850;
 
+//#region Styled Components
+
 const SpaceHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -75,16 +77,14 @@ const StyledCloser = styled.div`
 	}
 `;
 
+//#endregion
+
 function getFloatingRoomWindow(windowKey) {
 	if (windowKey === 'loft.radio') {
 		return <LoftRadioInstance />;
-	} else if (RoomNames.indexOf(windowKey) > -1) {
-		return <RoomInstance space={windowKey} />;
-	} else if (windowKey === 'rTrees') {
-		return <RTreesInstance backgroundColor={'white'} />;
-	} else if (windowKey === null) {
-		return null;
 	}
+
+	return <RoomInstance space={windowKey} />;
 }
 
 function zIndexesReducer(state, action) {

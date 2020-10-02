@@ -23,6 +23,8 @@ const SERVICES = {
   },
 };
 
+//#region Styled Components
+
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -86,6 +88,8 @@ const ServiceContent = styled.div`
   flex: 1;
 `;
 
+//#endregion
+
 const RoomInstance = ({space}) => {
   const roomURLs = RoomURLs[space];
   const availableServiceNames = Object.keys(SERVICES).filter(serviceName => Object.keys(roomURLs).includes(serviceName));
@@ -107,6 +111,7 @@ const RoomInstance = ({space}) => {
       selectServiceName(name);
     }
   }
+
 
   return (
     <Container>

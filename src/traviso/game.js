@@ -34,7 +34,7 @@ export function initWhateverse({ onHouseVisit }, parent) {
 
     // callback function that will be called once everything is loaded and engine instance is ready, default null
     function engineInstanceReadyCallback(obj) {
-        obj.moveEngine.DEFAULT_SPEED = 5;
+        obj.moveEngine.DEFAULT_SPEED = 10;
         parent.current.appendChild(pixiRoot.view);
     }
 
@@ -79,14 +79,24 @@ export function initWhateverse({ onHouseVisit }, parent) {
         assetsToLoad: [
             '/assets/assets_characters.json',
             '/assets/map/tiles/ground.png',
-            '/assets/map/objects/block.png',
-            '/assets/map/objects/pyramid.png'
+            '/assets/map/objects/discord.png',
+            '/assets/map/objects/battery.png',
+            '/assets/map/objects/forum.png',
+            '/assets/map/objects/github.png',
+            '/assets/map/objects/radio.png',
+            '/assets/map/objects/source_cred.png',
+            '/assets/map/objects/wiki.png',
+            '/assets/map/objects/plants_mini.png',
+            '/assets/map/objects/plant_cells_two.png',
+            '/assets/map/objects/plant_cells_four.png',
+            '/assets/map/objects/building_cell_neon_blue.png',
         ],
         initialPositionFrame: { x : 0, y : 0, w : window.innerWidth, h : window.innerHeight },
-        initialZoomLevel: -0.5,
-        mapDraggable: true,
-        tileHeight: 74,
-        isoAngle: 30,
+        initialZoomLevel: -0.75,
+        mapDraggable: false,
+        followCharacter: false,
+        tileHeight:132,
+        isoAngle: 26.3,
         objectReachedDestinationCallback,
         otherObjectsOnTheNextTileCallback,
         engineInstanceReadyCallback,

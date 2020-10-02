@@ -24,6 +24,10 @@ const StyledImage = styled.img`
     margin: 1em 0;
 `;
 
+/**
+ * https://interspace-chat.vercel.app
+ * https://github.com/Cagince/interspace.chat/tree/feature/traviso-rewrite
+ */
 
 function TravisoGameWrapper({ }) {
     const {currentFloatingSpaces, addFloatingSpace } = useContext(FloatingSpaceContext);
